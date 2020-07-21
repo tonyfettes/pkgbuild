@@ -1,0 +1,17 @@
+pre_install() {
+}
+
+post_install() {
+  echo "Add following snippet to the configuration file of your shell:"
+  echo "  test -r "/usr/share/dircolors/nord" && eval $(dircolors /usr/share/dircolors/nord)"
+  echo "and resource your shell configuration."
+}
+
+pre_remove() {
+}
+
+post_remove() {
+  echo "Remember to remove the line:"
+  echo "  test -r "/usr/share/dircolors/nord" && eval $(dircolors /usr/share/dircolors/nord)"
+  echo "in your shell configuration."
+}

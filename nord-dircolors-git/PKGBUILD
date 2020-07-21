@@ -1,0 +1,22 @@
+# Maintainer: Tony Fettes <feihaoxiang2014@gmail.com>
+
+pkgname=nord-dircolors-git
+_gitname=nord-dircolors
+pkgver=r24.addb3b4
+pkgrel=1
+pkgdesc="An arctic, north-bluish clean and elegant dircolors theme."
+arch=('any')
+url="https://github.com/arcticicestudio/nord-dircolors"
+license=('MIT')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${_gitname}
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  mkdir -p "${pkgdir}/usr/share/dircolors"
+  install -Dm755 "${srcdir}/${_gitname}/src/dir_colors" "${pkgdir}/usr/share/dircolors/nord"
+}
