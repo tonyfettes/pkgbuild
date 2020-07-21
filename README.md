@@ -12,3 +12,4 @@ Clone the repo, enter the package dir, and `makepkg`.
 | Packages | Upstream |
 | -------- | -------- |
 | [netease-musicbox-git](https://github.com/tonyfettes/musicbox) | [darknessomi/musicbox](https://github.com/darknessomi/musicbox) |
+| [cppreference-zh](https://github.com/myfreeer/cppreference2mshelp) | [cppreference.com](https://zh.cppreference.com/) |

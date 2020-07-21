@@ -1,0 +1,17 @@
+pkgbase = cppreference-zh
+	pkgdesc = A complete reference for the features in the C++ Standard Library. HTML book.
+	pkgver = 20200314
+	pkgrel = 1
+	url = http://zh.cppreference.com/
+	arch = any
+	license = CCPL:cc-by-sa
+	depends = ttf-dejavu
+	provides = cppreference
+	conflicts = cppreference
+	options = !strip
+	options = !emptydirs
+	source = https://github.com/myfreeer/cppreference2mshelp/releases/download/2020.03/html-book-20200314.7z
+	sha256sums = 80ed350714a314011baa2626c5bbbe79b76296616acd9d8a69264ef9c849a093
+
+pkgname = cppreference-zh
+
