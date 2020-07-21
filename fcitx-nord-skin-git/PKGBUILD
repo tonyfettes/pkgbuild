@@ -1,0 +1,24 @@
+# Maintainer: Tony Fettes <feihaoxiang2014@gmail.com>
+
+pkgname=fcitx-nord-skin-git
+_gitname=fcitx-nord-skin
+pkgver=r1.4ae8525
+pkgrel=1
+pkgdesc="Skins for fcitx based on Nord Scheme"
+arch=('any')
+url="https://github.com/Yucklys/fcitx-nord-skin"
+license=('GPL3')
+depends=('fcitx')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${_gitname}
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd ${srcdir}
+  mkdir -p "${pkgdir}/usr/share/fcitx/skin"
+  cp ${_gitname}/* "${pkgdir}/usr/share/fcitx/skin/" -r
+}

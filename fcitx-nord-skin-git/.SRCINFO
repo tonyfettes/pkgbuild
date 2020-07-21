@@ -1,0 +1,13 @@
+pkgbase = fcitx-nord-skin-git
+	pkgdesc = Skins for fcitx based on Nord Scheme
+	pkgver = r1.4ae8525
+	pkgrel = 1
+	url = https://github.com/Yucklys/fcitx-nord-skin
+	arch = any
+	license = GPL3
+	depends = fcitx
+	source = git+https://github.com/Yucklys/fcitx-nord-skin.git
+	sha256sums = SKIP
+
+pkgname = fcitx-nord-skin-git
+
