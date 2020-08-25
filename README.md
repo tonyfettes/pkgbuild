@@ -15,3 +15,4 @@ Clone the repo, enter the package dir, and `makepkg`.
 | [cppreference-zh](https://github.com/myfreeer/cppreference2mshelp) | [cppreference.com](https://zh.cppreference.com/) |
 | nord-dircolors-git | [nord-dircolors](https://github.com/arcticicestudio/nord-dircolors) |
 | fcitx-nord-skin-git | [fcitx-nord-skin](https://github.com/Yucklys/fcitx-nord-skin) |
+| nerd-fonts-sarasa-mono-sc-git | [Sarasa-Mono-SC-Nerd](https://github.com/laishulu/Sarasa-Mono-SC-Nerd) |

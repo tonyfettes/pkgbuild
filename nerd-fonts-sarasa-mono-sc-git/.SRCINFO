@@ -1,0 +1,15 @@
+pkgbase = nerd-fonts-sarasa-mono-sc-git
+	pkgdesc = A CJK programming font based on Iosevka and Source Han Sans. (TTC)
+	pkgver = r20.fc56948
+	pkgrel = 1
+	url = https://github.com/laishulu/Sarasa-Mono-SC-Nerd
+	arch = any
+	license = OFL
+	provides = ttf-sarasa-slab
+	source = Sarasa-Mono-SC-Nerd::git+https://github.com/laishulu/Sarasa-Mono-SC-Nerd
+	source = LICENSE::https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/master/LICENSE
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = nerd-fonts-sarasa-mono-sc-git
+

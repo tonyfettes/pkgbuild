@@ -1,0 +1,29 @@
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+# Contributor: Ye Jingchen <ye.jingchen@gmail.com>
+# Contributor: Markus Weimar <mail@markusweimar.de>
+
+pkgname=nerd-fonts-sarasa-mono-sc-git
+_gitname=Sarasa-Mono-SC-Nerd
+pkgver=r20.fc56948
+pkgrel=1
+pkgdesc="A CJK programming font based on Iosevka and Source Han Sans. (TTC)"
+arch=('any')
+url="https://github.com/laishulu/Sarasa-Mono-SC-Nerd"
+license=('OFL')
+provides=('ttf-sarasa-slab')
+source=("${_gitname}::git+https://github.com/laishulu/Sarasa-Mono-SC-Nerd"
+        "LICENSE::https://raw.githubusercontent.com/be5invis/Sarasa-Gothic/master/LICENSE")
+sha256sums=('SKIP'
+            'SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_gitname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd "${srcdir}/${_gitname}"
+  install -d "$pkgdir/usr/share/fonts/${pkgname%-git}"
+  install -m644 *.ttf "$pkgdir/usr/share/fonts/${pkgname%-git}"
+  install -Dm644 "${srcdir}"/"LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
