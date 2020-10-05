@@ -1,0 +1,24 @@
+# Maintainer: Tony Fettes <feihaoxiang2014 AT gmail DOT com>
+
+pkgname=python-canvassyncer
+_pkgbase=Canvas-Syncer
+pkgver=r6.b008bae
+pkgrel=1
+pkgdesc="A script that let you sync your local files with Canvas."
+arch=('any')
+url="https://github.com/BoYanZh/${_pkgbase}"
+license=('MIT')
+depends=('python' 'python-tqdm')
+makedepends=('git' 'python' 'python-setuptools')
+source=("${_pkgbase}::git+${url}.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_gitname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+    cd "${srcdir}/${_pkgbase}"
+    python setup.py install --root "${pkgdir}" --optimize=1
+}
