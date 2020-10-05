@@ -3,13 +3,13 @@
 
 pkgname=netease-musicbox-git
 _gitname=musicbox
-pkgver=r675.e126bbf
+pkgver=r607.b890746
 pkgrel=1
 pkgdesc="A sexy command line interface musicbox for NetEase based on Python"
 arch=(any)
 url="https://github.com/tonyfettes/musicbox"
 depends=('mpg123' 'python-pycryptodomex' 'python-requests' 'python-future' 'python-requests-cache' 'python-fuzzywuzzy' 'python-levenshtein')
-makedepends=('python-setuptools' 'git')
+makedepends=('python-poetry' 'git')
 optdepends=('aria2: music caching'
             'libnotify: notifications'
             'qt5-base: lyrics support'
@@ -23,7 +23,7 @@ license=('MIT')
 #source=("${_gitname}::git+https://github.com/tonyfettes/musicbox#branch=wjy_test"
 #source=("${_gitname}::git+https://github.com/tonyfettes/musicbox#branch=wjy_kwph"
 source=("${_gitname}::git+https://github.com/tonyfettes/musicbox#branch=master"
-        "LICENSE::https://raw.githubusercontent.com/tonyfettes/musicbox/master/LICENSE.txt"
+        "LICENSE::https://raw.githubusercontent.com/tonyfettes/musicbox/master/LICENSE"
         "0001-Replace_pyqt4_to_pyqt5_as_depends.patch")
 
 sha256sums=('SKIP'
@@ -37,13 +37,27 @@ pkgver() {
 
 prepare() {
   cd "${srcdir}/${_gitname}"
+  local _pkgver=$(sed -n 's/version = "\(.*\)"/\1/p' pyproject.toml)
+  local _pkgname="NetEase-MusicBox"
   patch -Np1 -i "${srcdir}/0001-Replace_pyqt4_to_pyqt5_as_depends.patch"
+  sed -i "s/version = get_current_version()/version = \"${_pkgver}\"/" ./NEMbox/__main__.py
+}
+
+build() {
+  cd "${srcdir}/${_gitname}"
+  local _pkgver=$(sed -n 's/version = "\(.*\)"/\1/p' pyproject.toml)
+  local _pkgname="NetEase-MusicBox"
+  poetry build -f sdist
+  cd dist
+  tar xf "${_pkgname}-${_pkgver}.tar.gz"
 }
 
 package() {
   install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   cd "${srcdir}/${_gitname}"
+  local _pkgver=$(sed -n 's/version = "\(.*\)"/\1/p' pyproject.toml)
+  local _pkgname="NetEase-MusicBox"
+  cd "dist/${_pkgname}-${_pkgver}"
   python setup.py install --root="${pkgdir}/" --optimize=1
-  mkdir -p "${pkgdir}/usr/share/licenses/${pkgname}"
 }
 # vim:set ts=2 sw=2 et:
