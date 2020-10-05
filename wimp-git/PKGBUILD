@@ -1,0 +1,28 @@
+# Maintainer: Tony Fettes <feihaoxiang2014@gmail.com>
+
+pkgname=wimp-git
+_gitname=wimp
+pkgver=r5.ff7bb2d
+pkgrel=1
+pkgdesc="A simple program to show you where your pointer is"
+arch=('any')
+url="https://github.com/yshui/wimp"
+#license=('MIT')
+#depends=('vulkan')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${_gitname}
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd ${srcdir}/${_gitname}
+  cargo build --release
+}
+
+package() {
+  cd ${srcdir}/${_gitname}
+  install -Dm 755 target/release/wimp "${pkgdir}"/usr/bin/wimp
+}
