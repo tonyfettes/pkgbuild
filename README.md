@@ -16,3 +16,4 @@ Clone the repo, enter the package dir, and `makepkg`.
 | nord-dircolors-git | [nord-dircolors](https://github.com/arcticicestudio/nord-dircolors) |
 | fcitx-nord-skin-git | [fcitx-nord-skin](https://github.com/Yucklys/fcitx-nord-skin) |
 | nerd-fonts-sarasa-mono-sc-git | [Sarasa-Mono-SC-Nerd](https://github.com/laishulu/Sarasa-Mono-SC-Nerd) |
+| rime-cli-git | [rime-cli](https://github.com/infmagic2047/rime-cli) |

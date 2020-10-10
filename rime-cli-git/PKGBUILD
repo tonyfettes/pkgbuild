@@ -1,0 +1,25 @@
+# Maintainer: Tony Fettes <feihaoxiang2014@gmail.com>
+
+pkgname=rime-cli-git
+_gitname=rime-cli
+pkgver=r10.4bbc1c3
+pkgrel=1
+pkgdesc="A simple CLI frontend for rime"
+arch=('any')
+url="https://github.com/tonyfettes/rime-cli"
+license=('MIT')
+depends=('librime' 'json-c')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd ${_gitname}
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd ${srcdir}/${_gitname}
+  make
+  install -d ${pkgdir}/usr/bin
+  install -Dm 755 rime-cli ${pkgdir}/usr/bin
+}
