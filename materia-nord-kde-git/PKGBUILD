@@ -1,0 +1,40 @@
+# Maintainer: Tony Fettes < tonyfettes AT tonyfettes DOT com >
+
+pkgbase=materia-nord-kde-git
+pkgname=(materia-nord-kde-git kvantum-theme-materia-nord-git)
+pkgver=20201222.r5.gf51c4b2
+pkgrel=1
+pkgdesc="Materia theme with Nord colorscheme for KDE Plasma 5"
+arch=('any')
+url="https://github.com/tonyfettes/materia-kde"
+license=(GPL3)
+options=(!strip)
+conflicts=("${pkgbase%-*}")
+provides=("${pkgbase%-*}")
+source=("${pkgbase%-*}::git+${url}.git")
+sha256sums=('SKIP')
+makedepends=('git')
+
+pkgver() {
+  cd "${pkgname%-*}"
+  git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+}
+
+package_materia-nord-kde-git() {
+  optdepends=(
+    'materia-nord-gtk-theme: Matching GTK theme'
+    'kvantum-theme-materia-nord: Materia theme for Kvantum Qt style')
+  cd ${pkgbase%-*}
+  install -d "${pkgdir}"/usr/share/plasma/desktoptheme
+
+  # TODO: implement it
+}
+
+package_kvantum-theme-materia-nord-git() {
+  pkgdesc="Materia theme for Kvantum Qt style with Nord colorscheme"
+  depends=(kvantum-qt5)
+
+  cd ${pkgbase%-*}
+  install -d "${pkgdir}"/usr/share/Kvantum
+  cp -r Kvantum/MateriaNordDark "${pkgdir}"/usr/share/Kvantum
+}
