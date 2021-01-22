@@ -1,0 +1,37 @@
+diff --git a/static/style.css b/static/style.css
+index 7f2bfa4..e0f3036 100644
+--- a/static/style.css
++++ b/static/style.css
+@@ -51,6 +51,19 @@
+ 	--shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+ }
+ 
++.nord-dark {
++	--accent: #88c0d0;
++	--green: #a3be8c;
++	--text: #eceff4;
++	--foreground: #3b4252;
++	--background: #2e3440;
++	--outside: #434c5e;
++	--post: #4c566a;
++	--panel-border: 0px;
++	--highlighted: #4c566a;
++	--shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
++}
++
+ /* General */
+ 
+ ::selection {
+diff --git a/templates/settings.html b/templates/settings.html
+index 0dbec00..1af57f5 100644
+--- a/templates/settings.html
++++ b/templates/settings.html
+@@ -14,7 +14,7 @@
+ 		<div id="theme">
+ 			<label for="theme">Theme:</label>
+ 			<select name="theme"> 
+-				{% call utils::options(prefs.theme, ["system", "light", "dark"], "system") %}
++				{% call utils::options(prefs.theme, ["system", "light", "dark", "nord-dark"], "system") %}
+ 			</select>
+ 		</div>
+ 		<p>Interface</p>
