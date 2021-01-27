@@ -1,0 +1,27 @@
+diff --git a/src/rimeengine.cpp b/src/rimeengine.cpp
+index 6ff402e..90de307 100644
+--- a/src/rimeengine.cpp
++++ b/src/rimeengine.cpp
+@@ -148,6 +148,14 @@ void RimeEngine::rimeStart(bool fullcheck) {
+             RIME_ERROR() << "Failed to create user directory: " << userDir;
+         }
+     }
++    auto rimeLogDir = stringutils::joinPath(
++        StandardPath::global().userDirectory(StandardPath::Type::Cache),
++        "fcitx5/rime/log");
++    if (!fs::makePath(rimeLogDir)) {
++        if (!fs::isdir(rimeLogDir)) {
++            RIME_ERROR() << "Failed to create log directory for Rime engine: " << rimeLogDir;
++        }
++    }
+     const char *sharedDataDir = RIME_DATA_DIR;
+ 
+     RIME_STRUCT(RimeTraits, fcitx_rime_traits);
+@@ -157,6 +165,7 @@ void RimeEngine::rimeStart(bool fullcheck) {
+     fcitx_rime_traits.distribution_name = "Rime";
+     fcitx_rime_traits.distribution_code_name = "fcitx-rime";
+     fcitx_rime_traits.distribution_version = FCITX_RIME_VERSION;
++    fcitx_rime_traits.log_dir = rimeLogDir.c_str();
+ 
+     std::vector<const char *> modules;
+     // When it is not test, rime will load the default set.
